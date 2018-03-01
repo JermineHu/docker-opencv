@@ -1,0 +1,11 @@
+FROM ubuntu:artful
+MAINTAINER Jermine.hu@qq.com
+RUN apt-get update && apt-get install -y --no-install-recommends \
+     build-essential \
+     ca-certificates \
+     wget \
+     libopencv-dev \
+     cmake \
+     g++ \
+     unzip \
+     x264
