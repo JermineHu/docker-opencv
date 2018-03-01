@@ -8,4 +8,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      cmake \
      g++ \
      unzip \
-     x264
+     x264 ;\
+     apt-get autoremove && apt-get autoclean ;\
+     rm -rf /var/lib/apt/lists/*
