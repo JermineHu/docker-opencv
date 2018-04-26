@@ -9,10 +9,11 @@ ENV OPENCV_VERSION=3.4.1
 ENV OPENCL_ENABLED=OFF
 
 # build and install opencv
-RUN  apk add --no-cache x264 ;\
-     apk add --no-cache --virtual .build-deps musl-dev \
+RUN  apk add --no-cache x264 python3 python3-dev ;\
+     wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && rm get-pip.py ;\
+     apk add --no-cache --virtual .build-deps \
      ca-certificates \
-     wget \
+     make \
      cmake \
      g++ \
      unzip ;\
@@ -29,20 +30,18 @@ RUN  apk add --no-cache x264 ;\
     rm -rf /src/$OPENCV_VERSION-contrib.zip && \
     mkdir -p $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
     cd $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
-    cmake \
+   cmake \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PYTHON_SUPPORT=ON \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D CUDA_CUDA_LIBRARY=/usr/local/cuda/lib64/stubs/libcuda.so \
     -D INSTALL_C_EXAMPLES=ON \
     -D INSTALL_PYTHON_EXAMPLES=ON \
     -D BUILD_PYTHON_SUPPORT=ON \
     -D BUILD_NEW_PYTHON_SUPPORT=ON \
     -D PYTHON_DEFAULT_EXECUTABLE=$(which python3) \
-    -D PYTHON_INCLUDE_DIR=/usr/include/python3.5 \
-    -D PYTHON_INCLUDE_DIR2=/usr/include/x86_64-linux-gnu/python3.5m \
-    -D PYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so \
-    -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/dist-packages/numpy/core/include/ \
+    -D PYTHON_INCLUDE_DIR=/usr/include/python3.6m \
+    -D PYTHON_LIBRARY=/usr/lib/libpython3.6m.so \
+    -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3.6/site-packages/numpy/core/include \
     -D OPENCV_EXTRA_MODULES_PATH=$OPENCV_DIR/opencv_contrib-$OPENCV_VERSION/modules \
     -D WITH_TBB=ON \
     -D WITH_PTHREADS_PF=ON \
