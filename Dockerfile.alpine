@@ -32,6 +32,7 @@ RUN  apk add --no-cache x264 python3 python3-dev ;\
     mkdir -p $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
     cd $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
    cmake \
+    -D BUILD_opencv_xfeatures2d=OFF \
     -D BUILD_opencv_world=OFF \
     -D PYTHON_EXECUTABLE=$(which python3) \
     -D WITH_CUDA=OFF \
