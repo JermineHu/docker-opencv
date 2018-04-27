@@ -11,13 +11,13 @@ ENV OPENCL_ENABLED=OFF
 # build and install opencv
 RUN  apk add --no-cache x264 python3 python3-dev ;\
      wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && rm get-pip.py ;\
-     pip3 install numpy six;\
      apk add --no-cache --virtual .build-deps \
      ca-certificates \
      make \
      cmake \
      g++ \
      unzip ;\
+    pip3 install numpy six;\
     mkdir -p /src && \
     cd /src && \
     mkdir -p $OPENCV_DIR && \
