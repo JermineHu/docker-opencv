@@ -9,7 +9,7 @@ ENV OPENCV_VERSION=3.4.1
 ENV OPENCL_ENABLED=OFF
 
 # build and install opencv
-RUN  apk add --no-cache linux-headers x264 python3 python3-dev ;\
+RUN  apk add --no-cache linux-headers x264 python3 python3-dev protobuf ;\
      wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && rm get-pip.py ;\
      apk add --no-cache --virtual .build-deps \
      ca-certificates \
