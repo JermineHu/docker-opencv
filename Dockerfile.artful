@@ -69,5 +69,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make install && \
     ldconfig && \ 
     rm -rf $OPENCV_DIR;\
+    apt remove -y \
+     build-essential \
+     ca-certificates \
+     wget \
+     libopencv-dev \
+     cmake \
+     g++ \
+     unzip \
+     x264 ;\
     apt-get autoremove && apt-get autoclean ;\
     rm -rf /var/lib/apt/lists/*
