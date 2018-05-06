@@ -39,7 +39,7 @@ RUN  apk add --no-cache python3 libstdc++;\
     -D WITH_CUDA=OFF \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PYTHON_SUPPORT=ON \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D CMAKE_INSTALL_PREFIX=/usr \
     -D INSTALL_C_EXAMPLES=ON \
     -D INSTALL_PYTHON_EXAMPLES=ON \
     -D BUILD_PYTHON_SUPPORT=ON \
@@ -74,6 +74,4 @@ RUN  apk add --no-cache python3 libstdc++;\
     rm -r /var/cache/apk ; \
     rm -r /usr/share/man ; \
     apk del .build-deps ;\
-    sleep 15 ;\
     rm -rf $OPENCV_DIR ;\
-    ln -s /usr/local/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so /usr/lib/python3.6/site-packages/cv2.so
