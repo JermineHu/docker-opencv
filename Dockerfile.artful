@@ -11,7 +11,7 @@ ENV OPENCL_ENABLED=OFF
 # build and install opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
      python3 python3-pip python3-dev \
-     protobuf \
+     protobuf-compiler \
      ffmpeg \
      build-essential \
      ca-certificates \
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      g++ \
      unzip \
      x264 ;\
-    pip3 install numpy six ;\
+    pip3 install protobuf numpy six ;\
     mkdir -p /src && \
     cd /src && \
     mkdir -p $OPENCV_DIR && \
