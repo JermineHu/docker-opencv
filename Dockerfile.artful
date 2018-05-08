@@ -14,7 +14,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      protobuf \
      ffmpeg \
      build-essential \
-     linux-headers \
      ca-certificates \
      libavcodec-dev libavformat-dev libavdevice-dev libv4l-dev \
      wget \
