@@ -10,14 +10,18 @@ ENV OPENCL_ENABLED=OFF
 
 # build and install opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
+     python3 python3-pip python3-dev \
+     protobuf \
      build-essential \
+     linux-headers \
      ca-certificates \
      wget \
-     libopencv-dev \
+     make \
      cmake \
      g++ \
      unzip \
      x264 ;\
+    pip3 install opencv-python  numpy six ;\
     mkdir -p /src && \
     cd /src && \
     mkdir -p $OPENCV_DIR && \
@@ -35,16 +39,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PYTHON_SUPPORT=ON \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D CUDA_CUDA_LIBRARY=/usr/local/cuda/lib64/stubs/libcuda.so \
+    -D WITH_CUDA=OFF \
+    -D CMAKE_BUILD_TYPE=RELEASE \
     -D INSTALL_C_EXAMPLES=ON \
     -D INSTALL_PYTHON_EXAMPLES=ON \
     -D BUILD_PYTHON_SUPPORT=ON \
     -D BUILD_NEW_PYTHON_SUPPORT=ON \
     -D PYTHON_DEFAULT_EXECUTABLE=$(which python3) \
-    -D PYTHON_INCLUDE_DIR=/usr/include/python3.5 \
-    -D PYTHON_INCLUDE_DIR2=/usr/include/x86_64-linux-gnu/python3.5m \
-    -D PYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so \
-    -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/dist-packages/numpy/core/include/ \
+    -D PYTHON_INCLUDE_DIR=/usr/lib/python3.6 \
+    -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.6/dist-packages/numpy/core/include/ \
     -D OPENCV_EXTRA_MODULES_PATH=$OPENCV_DIR/opencv_contrib-$OPENCV_VERSION/modules \
     -D WITH_TBB=ON \
     -D WITH_PTHREADS_PF=ON \
