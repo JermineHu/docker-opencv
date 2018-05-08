@@ -12,16 +12,18 @@ ENV OPENCL_ENABLED=OFF
 RUN apt-get update && apt-get install -y --no-install-recommends \
      python3 python3-pip python3-dev \
      protobuf \
+     ffmpeg \
      build-essential \
      linux-headers \
      ca-certificates \
+     libavcodec-dev libavformat-dev libavdevice-dev libv4l-dev \
      wget \
      make \
      cmake \
      g++ \
      unzip \
      x264 ;\
-    pip3 install opencv-python  numpy six ;\
+    pip3 install numpy six ;\
     mkdir -p /src && \
     cd /src && \
     mkdir -p $OPENCV_DIR && \
@@ -66,7 +68,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     -D WITH_OPENGL=ON \
     -D WITH_QT=OFF \
     -D WITH_IPP=ON \
+    -D WITH_GTK=ON \
     -D WITH_FFMPEG=ON \
+    -D WITH_CUBLAS=ON \
     -D WITH_V4L=ON .. && \
     make -j8 && \
     make install && \
