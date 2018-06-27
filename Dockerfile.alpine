@@ -68,7 +68,7 @@ RUN  apk add --no-cache python3 libstdc++ ffmpeg;\
     -D WITH_IPP=ON \
     -D WITH_FFMPEG=ON \
     -D WITH_V4L=ON .. && \
-    make -j8 && \
+    make -j $(nproc) && \
     make install && \
     ldconfig && \ 
     rm -r /var/cache/apk ; \
