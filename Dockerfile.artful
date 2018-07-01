@@ -10,19 +10,17 @@ ENV OPENCL_ENABLED=OFF
 
 # build and install opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
-     python3 python3-pip python3-dev \
-     protobuf-compiler \
-     ffmpeg \
      build-essential \
      ca-certificates \
-     libavcodec-dev libavformat-dev libavdevice-dev libv4l-dev \
      wget \
-     make \
+     libavcodec-dev libavformat-dev libavdevice-dev libv4l-dev \
+     protobuf-compiler \
+     ffmpeg \
      cmake \
      g++ \
      unzip \
-     x264 ;\
-    pip3 install protobuf numpy six ;\
+     python3 python3-pip python3-dev python3-protobuf python3-numpy \
+     x264 ;\ 
     mkdir -p /src && \
     cd /src && \
     mkdir -p $OPENCV_DIR && \
@@ -37,9 +35,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     mkdir -p $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
     cd $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
     cmake \
+    -D BUILD_opencv_xfeatures2d=OFF \
+    -D BUILD_opencv_world=OFF \
+    -D PYTHON_EXECUTABLE=$(which python3) \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PYTHON_SUPPORT=ON \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D CMAKE_INSTALL_PREFIX=/usr \
     -D WITH_CUDA=OFF \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D INSTALL_C_EXAMPLES=ON \
@@ -47,8 +48,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     -D BUILD_PYTHON_SUPPORT=ON \
     -D BUILD_NEW_PYTHON_SUPPORT=ON \
     -D PYTHON_DEFAULT_EXECUTABLE=$(which python3) \
-    -D PYTHON_INCLUDE_DIR=/usr/lib/python3.6 \
-    -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.6/dist-packages/numpy/core/include/ \
+    -D PYTHON_INCLUDE_DIR=/usr/include/python3.6m \
+    -D PYTHON_LIBRARY=/usr/lib/$(uname -m)-linux-gnu/libpython3.6m.so \
+    -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3.6/site-packages/numpy/core/include \
     -D OPENCV_EXTRA_MODULES_PATH=$OPENCV_DIR/opencv_contrib-$OPENCV_VERSION/modules \
     -D WITH_TBB=ON \
     -D WITH_PTHREADS_PF=ON \
@@ -67,9 +69,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     -D WITH_OPENGL=ON \
     -D WITH_QT=OFF \
     -D WITH_IPP=ON \
-    -D WITH_GTK=ON \
     -D WITH_FFMPEG=ON \
-    -D WITH_CUBLAS=ON \
     -D WITH_V4L=ON .. && \
     make -j $(nproc) && \
     make install && \
