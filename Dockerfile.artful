@@ -35,8 +35,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     mkdir -p $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
     cd $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
     cmake \
-    -D BUILD_opencv_xfeatures2d=OFF \
-    -D BUILD_opencv_world=OFF \
     -D PYTHON_EXECUTABLE=$(which python3) \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PYTHON_SUPPORT=ON \
