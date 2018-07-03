@@ -13,12 +13,12 @@ RUN  apk add --no-cache python3 libstdc++ ffmpeg;\
      wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && rm get-pip.py ;\
      apk add --no-cache --virtual .build-deps \
      linux-headers python3-dev protobuf \
-     x265 x265-dev jpeg-dev lapack-dev \
-     x264 x264-dev libvpx-dev fdk-aac-dev opus-dev \
      ca-certificates \
      make \
      cmake \
      g++ \
+     x265 x265-dev jpeg-dev lapack-dev \
+     x264 x264-dev libvpx-dev fdk-aac-dev opus-dev \
      unzip ;\
     pip3 install numpy six;\
     mkdir -p /src && \
