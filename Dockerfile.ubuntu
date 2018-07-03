@@ -72,16 +72,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make install && \
     ldconfig && \ 
     rm -rf $OPENCV_DIR;\
-    apt remove -y \
-     build-essential \
-     ca-certificates \
-     wget \
-     cmake \
-     g++ \
-     unzip \
-     protobuf-compiler \
-     libavcodec-dev libavformat-dev libavdevice-dev libv4l-dev libjpeg-dev  liblapack-dev \
-     x265 libx265-dev libnuma-dev libx264-dev libvpx-dev libfdk-aac-dev libmp3lame-dev libopus-dev \
-     x264 ;\
     apt-get autoclean -y ;\
     rm -rf /var/lib/apt/lists/*
