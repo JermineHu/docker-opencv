@@ -1,8 +1,8 @@
 # docker-opencv
 
-This repository contains the x86_64, armhf, and arm64 architecture images of Ubuntu and Alpine distributions, including opencv3.4.1 and python3.6 .
+This repository contains the x86_64, armhf, and aarch64 architecture images of Ubuntu and Alpine distributions, including opencv3.4.1 and python3.6 and aarch64-tensorflow-1.5.
 
-It's very convenient to use raspberry pie, server or local to develop interesting programs with Python and OpenCV. You only need to take corresponding images.
+It's very convenient to use raspberry pie, server or local to develop interesting programs with Python and OpenCV and tensorflow. You only need to take corresponding images.
 
 ## How to use it ？
 
