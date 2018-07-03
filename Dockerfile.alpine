@@ -9,8 +9,7 @@ ENV OPENCV_VERSION=3.4.1
 ENV OPENCL_ENABLED=OFF
 
 # build and install opencv
-RUN  apk add --no-cache python3 libstdc++ ffmpeg;\
-     wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && rm get-pip.py ;\
+RUN  apk add --no-cache python3 libstdc++ ffmpeg;\     
      apk add --no-cache --virtual .build-deps \
      linux-headers python3-dev protobuf \
      ca-certificates \
@@ -21,6 +20,7 @@ RUN  apk add --no-cache python3 libstdc++ ffmpeg;\
      x265 x265-dev jpeg-dev lapack-dev \
      x264 x264-dev libvpx-dev fdk-aac-dev opus-dev \
      unzip ;\
+    wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && rm get-pip.py ;\
     pip3 install numpy six;\
     mkdir -p /src && \
     cd /src && \
