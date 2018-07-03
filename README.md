@@ -6,6 +6,8 @@ It's very convenient to use raspberry pie, server or local to develop interestin
 
 ## How to use it ？
 
+### Check opencv and python3 status 
+
 ```
 
 root@ubuntu:~/docker-opencv# docker run --rm -it jermine/opencv:alpine-arm64-3.4.1 sh
@@ -55,4 +57,67 @@ gcr.io/google_containers/kube-proxy-amd64   v1.9.2                         0f834
 alpine                                      edge                           698b28d4f8d1        5 months ago        3.96MB
 mirrorgooglecontainers/pause-arm64          3.1                            6cf7c80fe444        6 months ago        525kB
 k8s.gcr.io/pause-arm64                      3.1                            6cf7c80fe444        6 months ago        525kB
+```
+
+### To read IpCamera data by rtsp url.
+```
+root@45d3675ae9b0:/# python3
+Python 3.6.5 (default, Apr  1 2018, 05:46:30) 
+[GCC 7.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import cv2
+>>> cap=cv2.VideoCapture("rtsp://admin:password@192.168.16.201/h264/ch1/main/")
+>>> cap.isOpened()
+True
+>>> data=cap.read()    
+>>> data
+(True, array([[[140, 137, 135],
+        [139, 136, 134],
+        [138, 135, 133],
+        ..., 
+        [150, 156, 164],
+        [150, 156, 164],
+        [148, 154, 162]],
+
+       [[140, 137, 135],
+        [141, 138, 136],
+        [142, 139, 137],
+        ..., 
+        [150, 156, 164],
+        [150, 156, 164],
+        [148, 154, 162]],
+
+       [[141, 138, 136],
+        [141, 138, 136],
+        [144, 141, 139],
+        ..., 
+        [149, 155, 163],
+        [149, 155, 163],
+        [148, 154, 162]],
+
+       ..., 
+       [[130, 125, 135],
+        [131, 126, 136],
+        [134, 129, 139],
+        ..., 
+        [164, 161, 163],
+        [164, 161, 163],
+        [164, 161, 163]],
+
+       [[130, 125, 135],
+        [131, 126, 136],
+        [134, 129, 139],
+        ..., 
+        [164, 161, 163],
+        [164, 161, 163],
+        [164, 161, 163]],
+
+       [[133, 128, 138],
+        [134, 129, 139],
+        [135, 130, 140],
+        ..., 
+        [164, 161, 163],
+        [164, 161, 163],
+        [164, 161, 163]]], dtype=uint8))
+
 ```
