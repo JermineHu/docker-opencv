@@ -10,7 +10,7 @@ ENV OPENCL_ENABLED=OFF
 
 # build and install opencv
 RUN  apk add --no-cache python3 libstdc++ ffmpeg;\     
-     apk add --no-cache --virtual \
+     apk add --no-cache \
      linux-headers python3-dev protobuf \
      ca-certificates \
      make \
