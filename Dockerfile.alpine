@@ -16,6 +16,7 @@ RUN  apk add --no-cache python3 libstdc++ ffmpeg;\
      ca-certificates \
      make \
      cmake \
+     gcc \
      g++ \
      x265 x265-dev jpeg-dev lapack-dev \
      x264 x264-dev libvpx-dev fdk-aac-dev opus-dev \
