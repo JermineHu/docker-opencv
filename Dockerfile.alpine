@@ -10,7 +10,7 @@ ENV OPENCL_ENABLED=OFF
 
 # build and install opencv
 RUN  apk add --no-cache python3 libstdc++ ffmpeg;\     
-     apk add --no-cache --virtual .build-deps \
+     apk add --no-cache --virtual \
      linux-headers python3-dev protobuf \
      ca-certificates \
      make \
@@ -76,7 +76,6 @@ RUN  apk add --no-cache python3 libstdc++ ffmpeg;\
     ldconfig && \ 
     rm -r /var/cache/apk ; \
     rm -r /usr/share/man ; \
-    apk del .build-deps ;\
     rm -rf $OPENCV_DIR ;\
     sleep 15 ;\
     ln -s /usr/local/lib/python3.6/site-packages/cv2.cpython-36m-$(uname -m)-linux-gnu.so /usr/lib/python3.6/site-packages/cv2.so
