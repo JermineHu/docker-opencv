@@ -1,0 +1,5 @@
+setuptools
+scipy
+sklearn
+Pillow
+imutils
